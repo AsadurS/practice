@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Helper\Billing;
+use App\Helper\Billing\PaymentGatewayContract;
 
 use Illuminate\Support\Str;
 
-class PaymentGateway
+class BankPaymentGateway implements PaymentGatewayContract
 {
     private $curency;
     private $discount;

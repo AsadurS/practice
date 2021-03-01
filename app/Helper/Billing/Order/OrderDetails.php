@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Helper\Order;
+namespace App\Helper\Billing\Order;
 
-use App\Helper\Billing\PaymentGateway;
+use App\Helper\Billing\PaymentGatewayContract;
 
 class OrderDetails
 {
-    private $paymentGateway;
+    private $paymentGatewayContract;
 
-    public function __construct(PaymentGateway $paymentGateway)
+    public function __construct(PaymentGatewayContract $paymentGatewayContract)
     {
-        $this->paymentGateway = $paymentGateway;
+        $this->paymentGatewayContract = $paymentGatewayContract;
     }
 
     public function all()
     {
-       $this->paymentGateway->setDiscount(500); 
+       $this->paymentGatewayContract->setDiscount(500); 
 
        return [
             "name"=>'asad',

@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use App\Http\Controllers\PayorderController;
+use App\Http\Controllers\ChannelController;
+use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,3 +22,6 @@ Route::get('/', function () {
 
 
 Route::get('/payment', [PayorderController::class, "store"]);
+
+Route::get("/channel", [ChannelController::class, "index"]);
+Route::get("/post/create", [PostController::class, "create"]);

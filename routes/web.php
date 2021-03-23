@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PayorderController;
 use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\PostController;
+use App\Models\User;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,3 +26,10 @@ Route::get('/payment', [PayorderController::class, "store"]);
 
 Route::get("/channel", [ChannelController::class, "index"]);
 Route::get("/post/create", [PostController::class, "create"]);
+
+Route::get('/', function()
+{
+   $user =\App\Models\Image::with('user')->first();
+   $user2 =\App\Models\User::with('images')->first();
+   dd($user,$user2);
+});

@@ -40,4 +40,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+    public function images()
+    {
+        return $this->hasOneThrough(
+            Image::class,
+            Post::class,
+            'user_id', // Foreign key on the cars table...
+            'post_id', // Foreign key on the owners table...
+            'id', // Local key on the mechanics table...
+            'id' // Local key on the cars table...
+        );
+    }
 }

@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Mail;
+use App\Jobs\SendMail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +15,6 @@ use Illuminate\Support\Facades\URL;
 */
 
 Route::get('/', function () {
-	dd(URL::signedRoute('dashboard',123));
     return view('welcome');
 });
 
@@ -23,3 +23,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+ Route::get('/send-email', function(){
+  foreach (range(1,20)  as $value) {
+  	SendMail::dispatch("a_{$value}@gmail.com")->delay(now()->addSeconds(5));
+  }
+
+   return 'ok';
+ });
